@@ -44,17 +44,23 @@ class AuthenticateUserUseCase {
     // });
 
     const generateToken = new GenerateTokenProvider();
-    const token = await generateToken.execute(user.id);
 
-    const tokenReturn: IResponse = {
-      user: {
-        name: user.name,
-        email: user.email,
-      },
-      token,
-    };
+    if (user.id) {
+      console.log("aqui", user.id)
+      const token = await generateToken.execute(user.id);
 
-    return tokenReturn;
+      const tokenReturn: IResponse = {
+        user: {
+          name: user.name,
+          email: user.email,
+        },
+        token,
+      };
+
+      return tokenReturn;
+    }
+
+    return false
   }
 }
 
