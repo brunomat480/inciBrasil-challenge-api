@@ -14,11 +14,25 @@ datasource db {
 }
 
 model User {
-  id         String   @id @default(uuid())
+  id         String     @id @default(uuid())
   name       String
-  email      String   @unique
+  email      String     @unique
   password   String
-  created_at DateTime @default(now())
+  created_at DateTime   @default(now())
+  platform   Platform[]
 
   @@map("users")
+}
+
+model Platform {
+  id         String   @id @default(uuid())
+  name       String
+  imageUrl   String
+  url        String
+  created_at DateTime @default(now())
+  userId     String   @map("user_id")
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@map("platforms")
 }
