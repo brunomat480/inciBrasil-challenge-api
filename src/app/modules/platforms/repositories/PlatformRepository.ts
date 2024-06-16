@@ -4,8 +4,12 @@ import { PlatformDTO } from '../@types/PlatformDTO'
 
 class PlatformRepository {
 
-  async findAll(): Promise<Platform[]> {
-    const all = await prisma.platform.findMany()
+  async findAll(user_id: string): Promise<Platform[]> {
+    const all = await prisma.platform.findMany({
+      where: {
+        userId: user_id
+      }
+    })
 
     return all
   }

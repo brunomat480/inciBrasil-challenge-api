@@ -5,7 +5,9 @@ class ListPlatformsController {
   constructor(private listPlatformsUseCase: ListPlatformsUserCase) { }
 
   async handle(request: Request, response: Response): Promise<Response> {
-    const all = await this.listPlatformsUseCase.execute();
+    const { user_id } = request.params
+
+    const all = await this.listPlatformsUseCase.execute(user_id);
 
     return response.json(all);
   }
