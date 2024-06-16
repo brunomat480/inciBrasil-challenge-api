@@ -4,24 +4,24 @@ import { PlatformDTO } from '../@types/PlatformDTO'
 
 class PlatformRepository {
 
-  async findAll(user_id: string): Promise<Platform[]> {
+  async findAll(userId: string): Promise<Platform[]> {
     const all = await prisma.platform.findMany({
       where: {
-        userId: user_id
+        userId
       }
     })
 
     return all
   }
 
-  async create(user_id: string, { name, imageUrl, url }: PlatformDTO): Promise<PlatformDTO> {
+  async create(userId: string, { name, imageUrl, url }: PlatformDTO): Promise<PlatformDTO> {
 
     const newUser = await prisma.platform.create({
       data: {
         name,
         imageUrl,
         url,
-        userId: user_id
+        userId
       },
     })
 

@@ -20,6 +20,7 @@ model User {
   password   String
   created_at DateTime   @default(now())
   platform   Platform[]
+  Tool       Tool[]
 
   @@map("users")
 }
@@ -35,4 +36,17 @@ model Platform {
   user User @relation(fields: [userId], references: [id])
 
   @@map("platforms")
+}
+
+model Tool {
+  id         String   @id @default(uuid())
+  name       String
+  imageUrl   String
+  url        String
+  created_at DateTime @default(now())
+  userId     String   @map("user_id")
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@map("=tools")
 }

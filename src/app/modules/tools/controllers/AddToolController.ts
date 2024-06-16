@@ -6,17 +6,19 @@ class AddToolController {
   constructor(private addToolUseCase: AddToolUseCase) { }
 
   async handle(request: Request, response: Response): Promise<Response> {
-    const { user_id } = request.body
+    const { userId } = request.params
     const { name, imageUrl, url } = request.body
 
+    console.log({ userId })
+
     try {
-      const platform = await this.addToolUseCase.execute(user_id, { name, imageUrl, url })
+      const platform = await this.addToolUseCase.execute(userId, { name, imageUrl, url })
 
       return response.json(platform)
     } catch (error) {
       console.log(error)
 
-      return response.status(400).json({ message: 'Erro ao buscar as plataformas' })
+      return response.status(400).json({ message: 'Erro ao adicionar as ferramentas' })
     }
   }
 }

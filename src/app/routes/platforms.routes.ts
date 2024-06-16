@@ -1,10 +1,12 @@
 import { Router } from 'express';
 import listPlatforms from '../modules/platforms/useCases/listPlatforms';
 import addPlataform from '../modules/platforms/useCases/addPlataform';
+import { ensureAuthenticated } from '../middlewares/ensureAuthenticated';
 
 const platformsRouter = Router();
 
-platformsRouter.get('/users/:user_id/platforms', listPlatforms)
-platformsRouter.post('/users/:user_id/platforms', addPlataform)
+platformsRouter.use(ensureAuthenticated)
+platformsRouter.get('/users/:userId/platforms', listPlatforms)
+platformsRouter.post('/users/:userId/platforms', addPlataform)
 
 export { platformsRouter }

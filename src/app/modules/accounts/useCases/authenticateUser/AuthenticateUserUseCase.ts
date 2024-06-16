@@ -22,26 +22,16 @@ class AuthenticateUserUseCase {
   async execute({ email, password }: IRequest): Promise<IResponse | boolean> {
     const user = await this.userRepository.findByEmail(email);
 
-    // Verifica se o usuário existi
     if (!user) {
-      // throw new VerifyEmailAndPassword();
       return false
     }
 
     const passwordMatch = await compare(password, user.password);
 
-    // verifica se a senha está correta
     if (!passwordMatch) {
-      // throw new VerifyEmailAndPassword();
 
       return false
     }
-
-    // // Gerar o token
-    // const token = sign({}, "d64a9d7049d31f6d43e12fb73617070e", {
-    //   subject: user.id,
-    //   expiresIn: "1d",
-    // });
 
     const generateToken = new GenerateTokenProvider();
 

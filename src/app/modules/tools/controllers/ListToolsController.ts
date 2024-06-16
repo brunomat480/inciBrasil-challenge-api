@@ -5,9 +5,9 @@ class ListToolsController {
   constructor(private listToolsUseCase: ListToolsUserCase) { }
 
   async handle(request: Request, response: Response): Promise<Response> {
-    const { user_id } = request.params
+    const { userId } = request.params
 
-    const all = await this.listToolsUseCase.execute(user_id);
+    const all = await this.listToolsUseCase.execute(userId);
 
     return response.json(all);
   }

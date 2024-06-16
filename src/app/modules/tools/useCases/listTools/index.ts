@@ -1,12 +1,12 @@
 import { Request, Response } from "express";
 
-import { platformRepository } from '../../repositories';
-import { ListPlatformsUserCase } from './ListPlatformsUseCase';
-import { ListPlatformsController } from '../../controllers/ListPlatformsController';
+import { toolRepository } from '../../repositories';
+import { ListToolsUserCase } from './ListToolsUseCase';
+import { ListToolsController } from '../../controllers/ListToolsController';
 
 export default (request: Request, response: Response) => {
-  const listPlatformsUserCase = new ListPlatformsUserCase(platformRepository);
-  const listPlatformsController = new ListPlatformsController(listPlatformsUserCase);
+  const listToolsUserCase = new ListToolsUserCase(toolRepository);
+  const listToolsController = new ListToolsController(listToolsUserCase);
 
-  return listPlatformsController.handle(request, response);
+  return listToolsController.handle(request, response);
 }
