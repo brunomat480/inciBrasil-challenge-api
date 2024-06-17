@@ -34,7 +34,7 @@ model Platform {
   created_at DateTime @default(now())
   userId     String   @map("user_id")
 
-  user User @relation(fields: [userId], references: [id])
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("platforms")
 }
@@ -47,7 +47,7 @@ model Tool {
   created_at DateTime @default(now())
   userId     String   @map("user_id")
 
-  user User @relation(fields: [userId], references: [id])
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("=tools")
 }
