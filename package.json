@@ -8,6 +8,9 @@
     "db:migrate": "prisma migrate dev",
     "db:studio": "prisma studio"
   },
+  "prisma": {
+    "seed": "ts-node prisma/seed.ts"
+  },
   "author": "",
   "license": "ISC",
   "description": "",
