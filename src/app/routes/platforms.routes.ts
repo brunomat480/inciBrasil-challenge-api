@@ -5,8 +5,7 @@ import { ensureAuthenticated } from '../middlewares/ensureAuthenticated';
 
 const platformsRouter = Router();
 
-platformsRouter.post('/users/:userId/platforms', ensureAuthenticated, addPlataform)
-// platformsRouter.use(ensureAuthenticated)
+platformsRouter.post('/users/:userId/platforms', addPlataform)
 platformsRouter.get('/users/:userId/platforms', ensureAuthenticated, listPlatforms)
 
 export { platformsRouter }

@@ -21,7 +21,7 @@ model User {
   password   String
   created_at DateTime   @default(now())
   platform   Platform[]
-  Tool       Tool[]
+  tool       Tool[]
 
   @@map("users")
 }
@@ -36,6 +36,7 @@ model Platform {
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
+  @@unique([userId, name])
   @@map("platforms")
 }
 
@@ -49,5 +50,6 @@ model Tool {
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
+  @@unique([userId, name])
   @@map("=tools")
 }

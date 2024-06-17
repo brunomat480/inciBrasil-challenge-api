@@ -24,7 +24,7 @@ async function main() {
           }
         ]
       },
-      Tool: {
+      tool: {
         create: [
           {
             name: "E-mail",
@@ -43,7 +43,7 @@ async function main() {
 
   await prisma.user.create({
     data: {
-      name: "jose",
+      name: "Jose",
       email: "jose@gmail.com",
       phone: "0987654321",
       password: passwordHash,
@@ -81,7 +81,7 @@ async function main() {
           }
         ]
       },
-      Tool: {
+      tool: {
         create: [
           {
             name: "E-mail",
@@ -95,7 +95,7 @@ async function main() {
           },
           {
             name: "Asana",
-            imageUrl: "/tool/sana-logo.svg",
+            imageUrl: "/tool/asana-logo.svg",
             url: "https://asana.com/pt"
           },
           {
