@@ -2,7 +2,7 @@
   "openapi": "3.0.0",
   "info": {
     "title": "API de plataforma de cursos",
-    "description": "API que permite que usuários acessem plataformas de cursos voltadas para educação e ferramentas.",
+    "description": "API que permite que usuários acessem plataformas de cursos voltadas para educação.",
     "contact": {
       "name": "Repositório",
       "url": "https://github.com/brunomat480/inciBrasil-challenge-api"
