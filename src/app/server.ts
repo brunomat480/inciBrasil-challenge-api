@@ -1,7 +1,20 @@
 import express from 'express'
-import { router } from "./routes";
+import cors from 'cors'
+import { router } from "./routes"
+
+import swaggerUi from 'swagger-ui-express'
+import swaggerDocument from '../../swagger.json'
 
 const app = express()
+
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+  })
+);
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
 
 app.use(express.json());
 

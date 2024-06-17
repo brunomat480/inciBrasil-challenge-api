@@ -1,17 +1,18 @@
-import { compare } from "bcrypt";
+import { compare } from "bcrypt"
 
-import { GenerateTokenProvider } from '../../../../provider/GenerateTokenProvider';
-import { UserRepository } from '../../repositories/UserRepository';
+import { GenerateTokenProvider } from '../../../../provider/GenerateTokenProvider'
+import { UserRepository } from '../../repositories/UserRepository'
 
 interface IRequest {
-  email: string;
-  password: string;
+  identifier: string
+  password: string
 }
 
 interface IResponse {
   user: {
-    name: string;
-    email: string;
+    name: string
+    email: string
+    phone: string
   };
   token: string;
 }
@@ -19,8 +20,8 @@ interface IResponse {
 class AuthenticateUserUseCase {
   constructor(private userRepository: UserRepository) { }
 
-  async execute({ email, password }: IRequest): Promise<IResponse | boolean> {
-    const user = await this.userRepository.findByEmail(email);
+  async execute({ identifier, password }: IRequest): Promise<IResponse | boolean> {
+    const user = await this.userRepository.findByEmailOrPhone(identifier);
 
     if (!user) {
       return false
@@ -43,6 +44,7 @@ class AuthenticateUserUseCase {
         user: {
           name: user.name,
           email: user.email,
+          phone: user.phone
         },
         token,
       };

@@ -20,23 +20,28 @@ class UserRepository {
     return user;
   }
 
-  async findByEmail(email: string): Promise<UserDTO> {
-    const [user] = await prisma.user.findMany({
+  async findByEmailOrPhone(identifier: string): Promise<UserDTO | null> {
+    const user = await prisma.user.findFirst({
       where: {
-        email,
+        OR: [
+          { email: identifier },
+          { phone: identifier }
+        ]
       },
     });
 
     return user;
   }
 
-  async create({ name, email, password }: UserDTO): Promise<UserDTO> {
+
+  async create({ name, email, password, phone }: UserDTO): Promise<UserDTO> {
     const passwordHash = await hash(password, 8)
 
     const newUser = await prisma.user.create({
       data: {
         name,
         email,
+        phone,
         password: passwordHash,
       },
     })

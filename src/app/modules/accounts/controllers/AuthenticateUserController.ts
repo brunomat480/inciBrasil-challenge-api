@@ -5,12 +5,12 @@ class AuthenticateUserCotroller {
   constructor(private authenticateUserUseCase: AuthenticateUserUseCase) { }
 
   async handle(request: Request, response: Response): Promise<Response> {
-    const { password, email } = request.body;
+    const { password, identifier } = request.body;
 
     try {
       const token = await this.authenticateUserUseCase.execute({
         password,
-        email,
+        identifier,
       });
 
       return response.json(token);
