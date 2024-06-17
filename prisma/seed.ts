@@ -1,12 +1,15 @@
 import { prisma } from '../src/app/lib/prisma'
+import { hash } from 'bcrypt'
 
 async function main() {
+  const passwordHash = await hash("123456", 8)
+
   await prisma.user.create({
     data: {
       name: "Teste",
       email: "teste@gmail.com",
       phone: "1234567890",
-      password: "123456",
+      password: passwordHash,
       platform: {
         create: [
           {
@@ -43,7 +46,7 @@ async function main() {
       name: "Barbosa",
       email: "barbosa@example.com",
       phone: "0987654321",
-      password: "123456",
+      password: passwordHash,
       platform: {
         create: [
           {
